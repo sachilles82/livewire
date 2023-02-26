@@ -13,6 +13,7 @@ class Profile extends Component
     public $success = false;
     public User $user;
 
+    //Setzt die Bedingung für die Felder (minimum 3 Buchstaben, und email muss vorhanden sein)
     protected $rules = [
         'user.name'=>'min:3',
         'user.email'=>'email'];
@@ -39,6 +40,11 @@ class Profile extends Component
     public function checkname()
     {
         $this->validate();
+    }
+
+    public function updatedUserName($value)
+    {
+        $this->validateOnly('user.name');
     }
 
 }
