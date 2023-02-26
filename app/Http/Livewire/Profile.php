@@ -3,21 +3,24 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\User;
 
 class Profile extends Component
 {
     //Das sind die Variable (Datenbankeinträge Namen)
-    public $user;
+    public $name;
     public $email;
     public $success = false;
+    public User $user;
 
-    protected $rules = ['user'=>'min:3'];
+    protected $rules = [
+        'user.name'=>'min:3',
+        'user.email'=>'email'];
 
     //mit dieser Methode werden Sie von der Datenbank geholt
     public function mount(){
 
-        $this->user = auth()->user()->name;
-        $this->email = auth()->user()->email;
+        $this->user =auth()->user();
     }
 
     //mit dieser Methode werden sie angezeigt
@@ -26,13 +29,10 @@ class Profile extends Component
         return view('livewire.profile');
     }
 
-    public function updateprofile(){
+    public function updateprofile()
+    {
         $this->validate();
-
-        auth()->user()->update([
-            'name' => $this->user,
-            'email' => $this->email,
-        ]);
+        $this->user->save();
         $this->success = true;
     }
 

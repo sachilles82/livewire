@@ -19,14 +19,24 @@
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model.defer="user" id="name" name="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-text-input wire:model.defer="user.name" id="name" name="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('user.name')" />
+{{--            @if($errors->has('user.name'))--}}
+{{--                <div class="">--}}
+{{--                    {{$errors->first('user.name')}}--}}
+{{--                </div>--}}
+{{--            @endif--}}
         </div>
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input  wire:model.defer="email" id="email" name="email" type="email" class="mt-1 block w-full" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            <x-text-input  wire:model.defer="user.email" id="email" name="email" type="email" class="mt-1 block w-full" required autocomplete="username" />
+            <x-input-error class="mt-2" :messages="$errors->get('user.email')" />
+{{--            @if($errors->has('user.email'))--}}
+{{--                <div class="flex items-center gap-4">--}}
+{{--                    {{$errors->first('user.email')}}--}}
+{{--                </div>--}}
+{{--            @endif--}}
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
