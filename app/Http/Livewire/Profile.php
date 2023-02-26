@@ -36,4 +36,9 @@ class Profile extends Component
         $this->success = true;
     }
 
+    public function checkname()
+    {
+        $this->validate();
+    }
+
 }
