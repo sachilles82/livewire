@@ -12,6 +12,7 @@ class Profile extends Component
     public $email;
     public $success = false;
     public User $user;
+    public $showHelp = false;
 
     //Setzt die Bedingung für die Felder (minimum 3 Buchstaben, und email muss vorhanden sein)
     protected $rules = [
