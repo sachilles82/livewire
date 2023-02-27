@@ -34,9 +34,15 @@ class Products extends Component
                 $query->where('category_id' , $this->searchCategory);
             })
             ->paginate(10);
+
         return view('livewire.products', [
             'products' => $products
         ]);
-
     }
+
+    public function deleteProduct($products_id)
+    {
+        Product::find($products_id)->delete();
+    }
+
 }

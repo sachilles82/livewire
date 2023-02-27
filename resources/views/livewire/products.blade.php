@@ -47,8 +47,9 @@
                 {{ $products->description }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                <a href="" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">View</a>
-                <a href="" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Edit</a>
+                <a href="" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Edit</a>
+                <a onclick="confirm('Are you sure you want delete this?') || event.stopImmediatePropagation()" wire:click="deleteProduct('{{$products->id}}')"
+                   class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Delete</a>
 
             </td>
         </tr>
