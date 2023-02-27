@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+{{--        livewireStyle unbedingt in die Hauptdatei schreiben--}}
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -33,6 +34,7 @@
                 {{ $slot }}
             </main>
         </div>
+{{--        livewireScripts unbeding hierhin schreiben--}}
     @livewireScripts
     </body>
 </html>
