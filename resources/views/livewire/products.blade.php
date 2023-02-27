@@ -1,4 +1,5 @@
-<table class="min-w-full divide-y divide-gray-300">
+<div>
+<table class="min-w-full divide-y divide-gray-300 mb-2">
     <thead class="bg-gray-50">
     <tr>
         <th scope="col" class="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-gray-900">Name</th>
@@ -30,4 +31,8 @@
     @endforelse
     <!-- More people... -->
     </tbody>
-</table>
+    </table>
+    <div class="mx-6 mb-6">
+    {{ $products->paginate() }}
+        </div>
+</div>
