@@ -13,12 +13,14 @@ class Products extends Component
 
     public $categories;
     public $searchQuery;
+    public $searchCategory;
 
 
     public function mount()
     {
         $this->categories = Category::all();
         $this->searchQuery = '';
+        $this->searchCategory = '';
     }
 
     public function render()
@@ -26,6 +28,9 @@ class Products extends Component
         $products = Product::with('category')
             ->when($this->searchQuery != '', function ($query){
                 $query->where('name' , 'like', '%'.$this->searchQuery.'%');
+            })
+            ->when($this->searchCategory != '', function ($query){
+                $query->where('category_id' , $this->searchCategory);
             })
             ->paginate(10);
         return view('livewire.products', [
