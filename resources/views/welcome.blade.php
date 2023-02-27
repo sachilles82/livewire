@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
+    <meta name="x-livewire-turbolinks-update" content="{{ json_encode(['url' => request()->url(), 'title' => $pageTitle ?? '']) }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
