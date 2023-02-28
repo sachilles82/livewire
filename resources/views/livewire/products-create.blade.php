@@ -8,25 +8,27 @@
                                     <div class="sm:col-span-6">
                                         <label for="first-name" class="block text-sm font-medium text-gray-700">Product Name</label>
                                         <div class="mt-1">
-                                            <input wire:model="product.name" type="text" id="name" autocomplete="given-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-
-                                        </div>
+                                            <input wire:model="product.name" type="text" autocomplete="given-name" class=" @error('product.name')is invalid @enderror block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            @error('product.name')<p class="text-sm text-yellow-700">{{$message}}</p>@enderror
+                                         </div>
                                     </div>
                                     <div class="sm:col-span-6">
                                         <label for="country" class="block text-sm font-medium text-gray-700">Product Category</label>
                                         <div class="mt-1">
-                                            <select wire:model="product.category_id" id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            <select wire:model="product.category_id" autocomplete="country-name" class="@error('category_id')is invalid @enderror block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('category_id')<p class="text-sm text-yellow-700">{{$message}}</p>@enderror
                                         </div>
                                     </div>
 
                                     <div class="sm:col-span-12">
                                         <label for="about" class="block text-sm font-medium text-gray-700">Description</label>
                                         <div class="mt-1">
-                                            <textarea wire:model="product.description" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                                            <textarea wire:model="product.description" rows="3" class="@error('product.description')is invalid @enderror block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                                            @error('product.description')<p class="text-sm text-yellow-700">{{$message}}</p>@enderror
                                         </div>
                                         <p class="mt-2 text-sm text-gray-500">Write a few sentences about the product.</p>
                                     </div>
