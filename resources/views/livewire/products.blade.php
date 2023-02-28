@@ -1,13 +1,11 @@
 <div>
     <div class="flex bg-gray-50">
                 <div class="w-1/4 p-3 ml-3">
-                    <label for="text" class="block text-sm font-medium text-gray-700">Search</label>
                     <div class="mt-1">
                         <input wire:model="searchQuery" type="text" name="text" id="text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-xs" placeholder="Search for product...">
                     </div>
                 </div>
                 <div class="w-1/4 p-3 ml-3">
-                    <label for="category" class="block text-sm font-medium text-gray-700">Select Category</label>
                     <select wire:model="searchCategory" name="category" class="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                         <option>-- choose Category--</option>
                         @foreach($categories as $category)
@@ -15,6 +13,11 @@
                         @endforeach
                     </select>
                 </div>
+        <div class="w-full p-3 mr-3 mt-3 text-right">
+            <div class="block mb-8">
+                <a href="{{ route('products.create')}}" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Add Product</a>
+            </div>
+        </div>
             </div>
 {{--    <div wire:loading.block class="border-l-4 border-yellow-400 bg-yellow-50 p-4">--}}
 {{--                    <div class="ml-3">--}}
