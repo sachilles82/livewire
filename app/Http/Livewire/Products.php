@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Livewire;
 
 use App\Models\Category;
@@ -15,7 +16,6 @@ class Products extends Component
     public $searchQuery;
     public $searchCategory;
 
-
     public function mount()
     {
         $this->categories = Category::all();
@@ -25,24 +25,23 @@ class Products extends Component
 
     public function render()
     {
-        sleep(1);
         $products = Product::with('category')
             ->when($this->searchQuery != '', function ($query){
                 $query->where('name' , 'like', '%'.$this->searchQuery.'%');
             })
-            ->when($this->searchCategory != '', function ($query){
-                $query->where('category_id' , $this->searchCategory);
+            ->when($this->searchCategory != '', function ($query) {
+                $query->where('category_id', $this->searchCategory);
             })
             ->paginate(10);
+
 
         return view('livewire.products', [
             'products' => $products
         ]);
-    }
 
+    }
     public function deleteProduct($products_id)
     {
         Product::find($products_id)->delete();
     }
-
 }

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        <meta name="x-livewire-turbolinks-update" content="{{ json_encode(['url' => request()->url(), 'title' => $pageTitle ?? '']) }}">
+{{--        <meta name="x-livewire-turbolinks-update" content="{{ json_encode(['url' => request()->url(), 'title' => $pageTitle ?? '']) }}">--}}
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
