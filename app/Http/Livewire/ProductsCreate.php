@@ -18,6 +18,10 @@ class ProductsCreate extends Component
 
     ];
 
+    protected $validationAttributes = [
+        'product.category_id' => 'Category'
+    ];
+
     public function mount()
     {
         $this->categories = Category::all();
