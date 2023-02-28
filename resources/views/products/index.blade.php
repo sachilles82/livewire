@@ -6,9 +6,6 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-{{--            <div class="block mb-8">--}}
-{{--                <a href="{{route('products.create')}}" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Add Product</a>--}}
-{{--            </div>--}}
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="mt-0 flow-root">
                     <div class="-my-2 -mx-6 overflow-x-auto lg:-mx-10">

@@ -22,10 +22,10 @@ class ProductsCreate extends Component
         'product.category_id' => 'Category'
     ];
 
-    public function mount()
+    public function mount(Product $product)
     {
         $this->categories = Category::all();
-        $this->product = new Product();
+        $this->product =  $product ?? new Product();
     }
 
     public function render()
