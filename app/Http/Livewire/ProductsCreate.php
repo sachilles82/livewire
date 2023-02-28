@@ -12,7 +12,7 @@ class ProductsCreate extends Component
     public Product $product;
 
     protected $rules = [
-        'product.name' => 'required',
+        'product.name' => 'required|min:5',
         'product.description' => 'required | max:500',
         'product.category_id' => 'required | integer'
 
@@ -36,5 +36,10 @@ class ProductsCreate extends Component
         $this->product->save();
 
         return redirect()->route('products');
+    }
+
+    public function updatedProductName()
+    {
+        $this->validateOnly('product.name');
     }
 }

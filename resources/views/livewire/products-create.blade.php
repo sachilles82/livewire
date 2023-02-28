@@ -15,12 +15,13 @@
                                     <div class="sm:col-span-6">
                                         <label for="country" class="block text-sm font-medium text-gray-700">Product Category</label>
                                         <div class="mt-1">
-                                            <select wire:model="product.category_id" autocomplete="country-name" class="@error('category_id')is invalid @enderror block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            <select wire:model="product.category_id" autocomplete="country-name" class="@error('product.category_id')is invalid @enderror block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                <option>--choose--</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('category_id')<p class="text-sm text-yellow-700">{{$message}}</p>@enderror
+                                            @error('product.category_id')<p class="text-sm text-yellow-700">{{$message}}</p>@enderror
                                         </div>
                                     </div>
 
