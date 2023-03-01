@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
 
         Category::factory()->count(7)->create();
 
+        $this->call([
+            CountriesSeeder::class,
+        ]);
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
