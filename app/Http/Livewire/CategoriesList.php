@@ -46,4 +46,13 @@ class CategoriesList extends Component
             'category.slug' => ['nullable', 'string'],
         ];
     }
+
+    public function save()
+    {
+        $this->validate();
+
+        $this->category->save();
+
+        $this->reset('showModal');
+    }
 }
