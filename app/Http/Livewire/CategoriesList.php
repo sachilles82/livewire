@@ -11,6 +11,19 @@ class CategoriesList extends Component
 {
     use WithPagination;
 
+    public Category $category;
+
+    public bool $showModal = false;
+
+    public function openModal()
+    {
+        $this->showModal = true;
+
+        $this->category = new Category();
+    }
+
+
+
     public function render(): View
     {
         $categories = Category::paginate(10);
