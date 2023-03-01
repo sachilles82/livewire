@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -31,5 +32,18 @@ class CategoriesList extends Component
         return view('livewire.categories-list', [
             'categories' => $categories,
         ]);
+    }
+
+    public function updatedCategoryName()
+    {
+        $this->category->slug = Str::slug($this->category->name);
+    }
+
+    protected function rules(): array
+    {
+        return [
+            'category.name' => ['required', 'string', 'min:3'],
+            'category.slug' => ['nullable', 'string'],
+        ];
     }
 }
