@@ -85,6 +85,12 @@ class OrderForm extends Component
         $this->orderProducts[$index]['is_saved'] = false;
     }
 
+    public function removeProduct($index): void
+    {
+        unset($this->orderProducts[$index]);
+        $this->orderProducts = array_values($this->orderProducts);
+    }
+
     public function saveProduct($index): void
     {
         $this->resetErrorBag();
