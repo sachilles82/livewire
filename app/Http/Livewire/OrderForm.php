@@ -73,6 +73,18 @@ class OrderForm extends Component
         ];
     }
 
+    public function editProduct($index): void
+    {
+        foreach ($this->orderProducts as $key => $invoiceProduct) {
+            if (!$invoiceProduct['is_saved']) {
+                $this->addError('$this->orderProducts.' . $key, 'This line must be saved before editing another.');
+                return;
+            }
+        }
+
+        $this->orderProducts[$index]['is_saved'] = false;
+    }
+
     public function saveProduct($index): void
     {
         $this->resetErrorBag();
