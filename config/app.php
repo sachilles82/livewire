@@ -121,7 +121,7 @@ return [
     */
 
     'orders' => [
-        'taxes' => 7.7 ,
+        'taxes' => 7 ,
     ],
 
     /*
