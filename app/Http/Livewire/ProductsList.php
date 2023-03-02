@@ -17,11 +17,13 @@ class ProductsList extends Component
 
     public array $countries = [];
 
+    public array $selected = [];
+
     public string $sortColumn = 'products.name';
 
     public string $sortDirection = 'asc';
 
-    protected $listeners = ['delete'];
+    protected $listeners = ['delete', 'deleteSelected'];
 
     public array $searchColumns = [
         'name' => '',
@@ -35,6 +37,11 @@ class ProductsList extends Component
     {
         $this->categories = Category::pluck('name', 'id')->toArray();
         $this->countries = Country::pluck('name', 'id')->toArray();
+    }
+
+    public function getSelectedCountProperty(): int
+    {
+        return count($this->selected);
     }
 
     public function deleteConfirm($method, $id = null): void
@@ -53,6 +60,15 @@ class ProductsList extends Component
         $product = Product::findOrFail($id);
 
         $product->delete();
+    }
+
+    public function deleteSelected(): void
+    {
+        $products = Product::whereIn('id', $this->selected)->get();
+
+        $products->each->delete();
+
+        $this->reset('selected');
     }
 
     public function sortByColumn($column): void
