@@ -32,6 +32,16 @@ class OrderForm extends Component
 
         if ($this->order->exists) {
             $this->editing = true;
+
+            foreach ($this->order->products()->get() as $product) {
+                $this->orderProducts[] = [
+                    'product_id' => $product->id,
+                    'quantity' => $product->pivot->quantity,
+                    'product_name' => $product->name,
+                    'product_price' => $product->pivot->price,
+                    'is_saved' => true,
+                ];
+            }
         } else {
             $this->order->order_date = today();
         }
@@ -118,7 +128,7 @@ class OrderForm extends Component
     {
         $this->validate();
 
-        $this->order->order_date = Carbon::parse($this->order->order_date)->format('d-m-Y');
+        $this->order->order_date = Carbon::parse($this->order->order_date)->format('Y-m-d');
 
         $this->order->save();
 
