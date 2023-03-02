@@ -14,23 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
-        Category::factory()->count(7)->create();
+        Category::factory()->count(4)->create();
 
         $this->call([
             CountriesSeeder::class,
         ]);
 
-        Product::factory(10)->create()->each(function ($product) {
+        Product::factory(6)->create()->each(function ($product) {
             $product->categories()
                 ->saveMany(Category::factory(mt_rand(1, 2))->make());
         });
-
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
+
 }

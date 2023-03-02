@@ -21,6 +21,8 @@ class CategoriesList extends Component
 
     public array $active = [];
 
+    public int $editedCategoryId = 0;
+
     public function openModal()
     {
         $this->showModal = true;
