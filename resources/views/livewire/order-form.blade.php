@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            Create/Edit Order
+            {{ $editing ? 'Edit Order' : 'Create Order' }}
         </h2>
     </x-slot>
 
@@ -45,22 +45,62 @@
                             <th class="px-6 py-3 w-56 text-left bg-gray-50"></th>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                            <tr>
-                                <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                    Product Name
-                                </td>
-                                <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                    Product Price
-                                </td>
-                                <td>
-                                    <x-primary-button>
-                                        Edit
-                                    </x-primary-button>
-                                    <button class="px-4 py-2 ml-1 text-xs text-red-500 uppercase bg-red-200 rounded-md border border-transparent hover:text-red-700 hover:bg-red-300">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
+                            @forelse($orderProducts as $index => $orderProduct)
+                                <tr>
+                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                        @if($orderProduct['is_saved'])
+                                            <input type="hidden" name="orderProducts[{{$index}}][product_id]" wire:model="orderProducts.{{$index}}.product_id" />
+                                            @if($orderProduct['product_name'] && $orderProduct['product_price'])
+                                                {{ $orderProduct['product_name'] }}
+                                                (${{ number_format($orderProduct['product_price'] / 100, 2) }})
+                                            @endif
+                                        @else
+                                            <select name="orderProducts[{{ $index }}][product_id]" class="focus:outline-none w-full border {{ $errors->has('$orderProducts.' . $index) ? 'border-red-500' : 'border-indigo-500' }} rounded-md p-1" wire:model="orderProducts.{{ $index }}.product_id">
+                                                <option value="">-- choose product --</option>
+                                                @foreach ($this->allProducts as $product)
+                                                    <option value="{{ $product->id }}">
+                                                        {{ $product->name }}
+                                                        (${{ number_format($product->price / 100, 2) }})
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('orderProducts.' . $index)
+                                            <em class="text-sm text-red-500">
+                                                {{ $message }}
+                                            </em>
+                                            @enderror
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                        @if($orderProduct['is_saved'])
+                                            <input type="hidden" name="orderProducts[{{$index}}][quantity]" wire:model="orderProducts.{{$index}}.quantity" />
+                                            {{ $orderProduct['quantity'] }}
+                                        @else
+                                            <input type="number" step="1" name="orderProducts[{{$index}}][quantity]" class="p-1 w-full rounded-md border border-indigo-500 focus:outline-none" wire:model="orderProducts.{{$index}}.quantity" />
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                        @if($orderProduct['is_saved'])
+                                            <x-primary-button wire:click.prevent="editProduct({{$index}})">
+                                                Edit
+                                            </x-primary-button>
+                                        @elseif($orderProduct['product_id'])
+                                            <x-primary-button wire:click.prevent="saveProduct({{$index}})">
+                                                Save
+                                            </x-primary-button>
+                                        @endif
+                                        <button class="px-4 py-2 ml-1 text-xs text-red-500 uppercase bg-red-200 rounded-md border border-transparent hover:text-red-700 hover:bg-red-300" wire:click.prevent="removeProduct({{$index}})">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                        Start adding products to order.
+                                    </td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                         <div class="mt-3">
