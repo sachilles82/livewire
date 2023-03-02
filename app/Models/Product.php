@@ -18,6 +18,11 @@ class Product extends Model
         return $this->belongsTo(Country::class);
     }
 
+    public function orders(): belongsToMany
+    {
+        return $this->belongsToMany(Order::class);
+    }
+
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
