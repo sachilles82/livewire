@@ -21,6 +21,8 @@ class ProductsList extends Component
 
     public string $sortDirection = 'asc';
 
+    protected $listeners = ['delete'];
+
     public array $searchColumns = [
         'name' => '',
         'price' => ['', ''],
@@ -33,6 +35,24 @@ class ProductsList extends Component
     {
         $this->categories = Category::pluck('name', 'id')->toArray();
         $this->countries = Country::pluck('name', 'id')->toArray();
+    }
+
+    public function deleteConfirm($method, $id = null): void
+    {
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type'  => 'warning',
+            'title' => 'Are you sure?',
+            'text'  => '',
+            'id'    => $id,
+            'method' => $method,
+        ]);
+    }
+
+    public function delete($id): void
+    {
+        $product = Product::findOrFail($id);
+
+        $product->delete();
     }
 
     public function sortByColumn($column): void
