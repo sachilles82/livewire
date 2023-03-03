@@ -31,4 +31,11 @@ class TotalRevenueChart extends Component
         ];
     }
 
+    public function updateChartData(): void
+    {
+        $this->emitSelf('updateChartData', [
+            'data' => $this->getData(),
+        ]);
+    }
+
 }
