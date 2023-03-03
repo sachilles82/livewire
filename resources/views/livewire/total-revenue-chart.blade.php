@@ -1,3 +1,15 @@
 <div>
-    {{-- Nothing in the world is as soft and yielding as water. --}}
+    <canvas
+        x-data="{
+            chart: null,
+
+            init: function () {
+                let chart = new Chart($el, {
+                    type: 'line',
+                    data: @js($this->getData()),
+                })
+            }
+        }"
+        style="height: 320px;">
+    </canvas>
 </div>
