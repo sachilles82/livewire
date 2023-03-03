@@ -42,6 +42,7 @@
 
         {{--        livewireScripts unbeding hierhin schreiben--}}
     @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         {{-- der Link für die sortable im Table --}}
         <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.2.0/dist/livewire-sortable.js"></script>
     {{-- Delete Modal ist hier eingebettet  --}}
